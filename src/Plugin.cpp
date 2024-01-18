@@ -1,29 +1,29 @@
 #include <ll/api/plugin/NativePlugin.h>
 
 #include "Plugin.h"
+#include "ll/api/memory/Hook.h"
+#include "mc/resources/ResourcePackRepository.h"
 
 namespace plugin {
 
+LL_AUTO_TYPE_INSTANCE_HOOK(
+    ResourceInitHook,
+    ll::memory::HookPriority::Normal,
+    ResourcePackRepository,
+    &ResourcePackRepository::_initialize,
+    void
+) {
+    this->setCustomResourcePackPath("./plugins/LegacyParticleAPI/ResourcePacks", PackType::Resources);
+    origin();
+}
+
 Plugin::Plugin(ll::plugin::NativePlugin& self) : mSelf(self) {
-    mSelf.getLogger().info("loading...");
-
-    // Code for loading the plugin goes here.
+    ResourceInitHook::hook();
+    mSelf.getLogger().info("Loaded");
 }
 
-bool Plugin::enable() {
-    mSelf.getLogger().info("enabling...");
+bool Plugin::enable() { return true; }
 
-    // Code for enabling the plugin goes here.
-
-    return true;
-}
-
-bool Plugin::disable() {
-    mSelf.getLogger().info("disabling...");
-
-    // Code for disabling the plugin goes here.
-
-    return true;
-}
+bool Plugin::disable() { return true; }
 
 } // namespace plugin
