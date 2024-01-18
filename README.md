@@ -1,35 +1,21 @@
-# LeviLamina Plugin Template
-
-A LeviLamina plugin template
-
-This plugin is a template for developing LeviLamina plugins.
-
-## Install
-
-Generate a new repository from this template.
+# LegacyParticleAPI
 
 ## Usage
 
-Before using this plugin template, make sure that you have installed XMake and a Minecraft Bedrock Server with LeviLamina.
+ParticleAPI provides a rich and easy-to-use particle generation interface for plugin development, which intuitive design and efficient and stable performance support developers to write better plugins.
 
-1. Clone the new repository into a local folder.
+Including headfile `#include "LegacyParticleAPI/ParticleAPI.h"` is the first step to use ParticleAPI。
+It provides the generation class `ParticleAPI` which is closer to the bottom layer and the further encapsulated CUI class `ParticleCUI`. The difference between the two is very small, and only the members of the CUI class are introduced here.
 
-1. Change the plugin name and the expected LeviLamina version in `xmake.lua`.
-
-1. Add your code.
-
-1. Run `xmake repo -u` in the root of the repository.
-
-1. Run `xmake` to build the plugin.
-
-Now the build is complete at `bin/`.
-
-## Contributing
-
-Ask questions by [creating an issue](https://github.com/LiteLDev/levilamina-plugin-template/issues/new/choose).
-
-PRs accepted.
-
-## License
-
-CC0-1.0 © LiteLDev
+### CUI
+| Type | Name                | Illustration              |
+| ---- | ------------------- | ------------------------- |
+| Var  | displayRadius: uint | maximum visible distance  |
+| Var  | highDetial: bool    | draw type HD option       |
+| Var  | doubleSide: bool    | draw type two-side option |
+| Func | spawnParticle       | generate the particle     |
+| Func | spawnPoint          | generate the point        |
+| Func | spawnNumber         | generate the number       |
+| Func | drawOrientedLine    | draw oriented line        |
+| Func | drawCuboid          | draw 3D rectangle         |
+| Func | drawCircle          | draw 2D circle            |
