@@ -86,9 +86,9 @@ function pack_plugin(target,plugin_define)
     import("lib.detect.find_file")
 
     local manifest_path = find_file("manifest_template.json", os.projectdir())
+    local bindir = path.join(os.projectdir(), "bin")
     if manifest_path then
         local manifest = io.readfile(manifest_path)
-        local bindir = path.join(os.projectdir(), "bin")
         local outputdir = path.join(bindir, plugin_define.pluginName)
         local targetfile = path.join(outputdir, plugin_define.pluginFile)
         local pdbfile = path.join(outputdir, path.basename(plugin_define.pluginFile) .. ".pdb")
@@ -108,6 +108,14 @@ function pack_plugin(target,plugin_define)
     else
         cprint("${bright yellow}warn: ${reset}not found manifest_template.json in root dir!")
     end
+
+    local includedir = path.join(bindir, "include")
+    local libdir = path.join(bindir, "lib")
+    local header = path.join(os.projectdir(), "src", "ParticleAPI.h")
+    os.mkdir(includedir)
+    os.mkdir(libdir)
+    os.cp(header, includedir)
+    os.cp(path.join(target:targetdir(), "LegacyParticleAPI.lib"), libdir)
 end
 
 
