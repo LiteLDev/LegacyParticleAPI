@@ -1,0 +1,23 @@
+{
+    "format_version": 2,
+    "tooth": "github.com/LiteLDev/LegacyParticleAPI",
+    "version": "0.1.0",
+    "info": {
+        "name": "LegacyParticleAPI",
+        "description": "ParticleAPI ported from LiteLoaderBDS",
+        "author": "LiteLDev",
+        "tags": [
+            "plugin",
+            "library"
+        ]
+    },
+    "asset_url": "https://github.com/LiteLDev/LegacyParticleAPI/releases/download/v0.1.0/LegacyParticleAPI-windows-x64.zip",
+    "files": {
+        "place": [
+            {
+                "src": "LegacyParticleAPI/*",
+                "dest": "plugins/LegacyParticleAPI"
+            }
+        ]
+    }
+}
