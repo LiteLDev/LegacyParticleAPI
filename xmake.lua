@@ -14,7 +14,8 @@ target("LegacyParticleAPI")
         "/utf-8"
     )
     add_defines(
-        "_HAS_CXX23=1"
+        "_HAS_CXX23=1",
+        "PARTICLEAPI_EXPORTS"
     )
     add_files(
         "src/**.cpp"

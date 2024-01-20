@@ -34,16 +34,16 @@ std::vector<std::pair<double, int>> binSplit(double start, double end) {
             length     -= 2048;
             auto point  = 1024.0 + start;
             start      += 2048.0;
-            lengthMap.push_back({point, 2048});
+            lengthMap.emplace_back(point, 2048);
         }
         if (length > 0) {
-            lengthMap.push_back({end - 1024.0, 2048});
+            lengthMap.emplace_back(end - 1024.0, 2048);
         }
     } else {
         int potLength = highestOneBit(length);
-        lengthMap.push_back({start + potLength * 0.5, potLength});
+        lengthMap.emplace_back(start + potLength * 0.5, potLength);
         if (length != potLength || length < size) {
-            lengthMap.push_back({end - potLength * 0.5, potLength});
+            lengthMap.emplace_back(end - potLength * 0.5, potLength);
         }
     }
     return lengthMap;
@@ -73,7 +73,7 @@ static std::unordered_map<ParticleCUI::ColorPalette, std::pair<char, mce::Color>
   // clang-format on
 };
 
-inline static const char getParticleColorType(ParticleCUI::ColorPalette const& p) { return particleColors.at(p).first; }
+static char getParticleColorType(ParticleCUI::ColorPalette const& p) { return particleColors.at(p).first; }
 
 extern "C" {
 void PTAPI_spawnParticle(int displayRadius, Vec3 const& pos, std::string const& particleName, int dimId) {
@@ -148,6 +148,8 @@ void PTAPI_drawAxialLine(
         case ParticleCUI::Direction::POS_X:
             vend.x += (float)length;
             break;
+        default:
+            break;
         }
         if (length > 0.375) {
             PTAPI_drawOrientedLine(displayRadius, vstart, vend, dimId, ParticleCUI::PointSize::PX2, 0.125, 5, color);
@@ -182,6 +184,8 @@ void PTAPI_drawAxialLine(
     case ParticleCUI::Direction::POS_X:
         start = originPoint.x;
         end   = originPoint.x + length;
+        break;
+    default:
         break;
     }
 
@@ -320,4 +324,55 @@ void PTAPI_drawCircle(
         break;
     }
 }
+}
+
+void ParticleCUI::spawnParticle(Vec3 const& pos, std::string const& particleName, int dimId) {
+    PTAPI_spawnParticle(displayRadius, pos, particleName, dimId);
+}
+
+void ParticleCUI::drawPoint(
+    Vec3 const&                          pos,
+    int                                  dimId,
+    enum PointSize                       lineWidth,
+    enum class ParticleCUI::ColorPalette color
+) {
+    PTAPI_drawPoint(displayRadius, pos, dimId, lineWidth, color);
+}
+void ParticleCUI::drawNumber(Vec3 const& pos, int dimId, enum NumType num, enum class ParticleCUI::ColorPalette color) {
+    PTAPI_drawNumber(displayRadius, pos, dimId, num, color);
+}
+void ParticleCUI::drawAxialLine(
+    const Vec3&                          originPoint,
+    enum Direction                       direction,
+    double                               length,
+    int                                  dimId,
+    enum class ParticleCUI::ColorPalette color
+) {
+    PTAPI_drawAxialLine(displayRadius, highDetial, doubleSide, originPoint, direction, length, dimId, color);
+}
+void ParticleCUI::drawOrientedLine(
+    const Vec3&                          start,
+    const Vec3&                          end,
+    int                                  dimId,
+    enum PointSize                       lineWidth,
+    double                               minSpacing,
+    int                                  maxParticlesNum,
+    enum class ParticleCUI::ColorPalette color
+) {
+    PTAPI_drawOrientedLine(displayRadius, start, end, dimId, lineWidth, minSpacing, maxParticlesNum, color);
+}
+void ParticleCUI::drawCuboid(const AABB& aabb, int dimId, enum class ParticleCUI::ColorPalette color) {
+    PTAPI_drawCuboid(displayRadius, highDetial, doubleSide, aabb, dimId, color);
+}
+void ParticleCUI::drawCircle(
+    const Vec3&                          originPoint,
+    enum Direction                       facing,
+    double                               radius,
+    int                                  dimId,
+    enum PointSize                       lineWidth,
+    double                               minSpacing,
+    int                                  maxParticlesNum,
+    enum class ParticleCUI::ColorPalette color
+) {
+    PTAPI_drawCircle(displayRadius, originPoint, facing, radius, dimId, lineWidth, minSpacing, maxParticlesNum, color);
 }
