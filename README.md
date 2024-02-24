@@ -1,5 +1,7 @@
 # LegacyParticleAPI
 
+**You shou install [LiteLoaderBDS-CUI](https://github.com/OEOTYAN/LiteLoaderBDS-CUI/releases) on your server firstly if you want to see the particle.**
+
 ## Usage
 
 ParticleAPI provides a rich and easy-to-use particle generation interface for plugin development, which intuitive design and efficient and stable performance support developers to write better plugins.
