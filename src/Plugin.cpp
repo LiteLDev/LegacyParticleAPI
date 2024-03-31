@@ -13,7 +13,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     &ResourcePackRepository::_initialize,
     void
 ) {
-    this->setCustomResourcePackPath("./plugins/LegacyParticleAPI/ResourcePacks", PackType::Resources);
+    this->addCustomResourcePackPath("./plugins/LegacyParticleAPI/ResourcePacks", PackType::Resources);
     origin();
 }
 
