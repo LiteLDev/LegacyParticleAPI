@@ -14,7 +14,7 @@
     },
     "asset_url": "https://github.com/LiteLDev/LegacyParticleAPI/releases/download/v0.6.0/LegacyParticleAPI-windows-x64.zip",
     "prerequisites": {
-        "github.com/LiteLDev/LeviLamina": "0.11.0"
+        "github.com/LiteLDev/LeviLamina": "0.11.x"
     },
     "files": {
         "place": [
