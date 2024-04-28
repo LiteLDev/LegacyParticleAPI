@@ -6,7 +6,7 @@ if not has_config("vs_runtime") then
     set_runtimes("MD")
 end
 
-add_requires("levilamina 0.11.0")
+add_requires("levilamina 0.12.0")
 
 target("LegacyParticleAPI")
     add_cxflags(

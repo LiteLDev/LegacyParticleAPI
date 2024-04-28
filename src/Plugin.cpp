@@ -4,7 +4,8 @@
 #include "ll/api/memory/Hook.h"
 #include "mc/resources/ResourcePackRepository.h"
 
-namespace plugin {
+#include "ll/api/plugin/NativePlugin.h"
+#include "ll/api/plugin/RegisterHelper.h"
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
     ResourceInitHook,
@@ -17,13 +18,31 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     origin();
 }
 
-Plugin::Plugin(ll::plugin::NativePlugin& self) : mSelf(self) {
+namespace legacy_particleapi {
+
+static std::unique_ptr<LegacyParticleAPI> instance;
+
+LegacyParticleAPI& LegacyParticleAPI::getInstance() { return *instance; }
+
+bool LegacyParticleAPI::load() {
+    getSelf().getLogger().info("Loading...");
+    // Code for loading the plugin goes here.
     ResourceInitHook::hook();
-    mSelf.getLogger().info("Loaded");
+    return true;
 }
 
-bool Plugin::enable() { return true; }
+bool LegacyParticleAPI::enable() {
+    getSelf().getLogger().info("Enabling...");
+    // Code for enabling the plugin goes here.
+    return true;
+}
 
-bool Plugin::disable() { return true; }
+bool LegacyParticleAPI::disable() {
+    getSelf().getLogger().info("Disabling...");
+    // Code for disabling the plugin goes here.
+    return true;
+}
 
-} // namespace plugin
+} // namespace legacy_particleapi
+
+LL_REGISTER_PLUGIN(legacy_particleapi::LegacyParticleAPI, legacy_particleapi::instance);

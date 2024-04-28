@@ -1,19 +1,20 @@
 #pragma once
 
-#include <ll/api/plugin/NativePlugin.h>
+#include "ll/api/plugin/NativePlugin.h"
 
-namespace plugin {
+namespace legacy_particleapi {
 
-class Plugin {
+class LegacyParticleAPI {
+
 public:
-    explicit Plugin(ll::plugin::NativePlugin& self);
+    static LegacyParticleAPI& getInstance();
 
-    Plugin(Plugin&&)                 = delete;
-    Plugin(const Plugin&)            = delete;
-    Plugin& operator=(Plugin&&)      = delete;
-    Plugin& operator=(const Plugin&) = delete;
+    LegacyParticleAPI(ll::plugin::NativePlugin& self) : mSelf(self) {}
 
-    ~Plugin() = default;
+    [[nodiscard]] ll::plugin::NativePlugin& getSelf() const { return mSelf; }
+
+    /// @return True if the plugin is loaded successfully.
+    bool load();
 
     /// @return True if the plugin is enabled successfully.
     bool enable();
@@ -21,8 +22,12 @@ public:
     /// @return True if the plugin is disabled successfully.
     bool disable();
 
+    // TODO: Implement this method if you need to unload the plugin.
+    // /// @return True if the plugin is unloaded successfully.
+    // bool unload();
+
 private:
     ll::plugin::NativePlugin& mSelf;
 };
 
-} // namespace plugin
+} // namespace legacy_particleapi
