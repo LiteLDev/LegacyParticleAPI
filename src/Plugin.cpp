@@ -1,11 +1,8 @@
-#include <ll/api/plugin/NativePlugin.h>
-
 #include "Plugin.h"
 #include "ll/api/memory/Hook.h"
 #include "mc/resources/ResourcePackRepository.h"
 
-#include "ll/api/plugin/NativePlugin.h"
-#include "ll/api/plugin/RegisterHelper.h"
+#include "ll/api/mod/RegisterHelper.h"
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
     ResourceInitHook,
@@ -45,4 +42,4 @@ bool LegacyParticleAPI::disable() {
 
 } // namespace legacy_particleapi
 
-LL_REGISTER_PLUGIN(legacy_particleapi::LegacyParticleAPI, legacy_particleapi::instance);
+LL_REGISTER_MOD(legacy_particleapi::LegacyParticleAPI, legacy_particleapi::instance);
