@@ -11,7 +11,10 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     &ResourcePackRepository::_initialize,
     void
 ) {
-    this->addCustomResourcePackPath("./plugins/LegacyParticleAPI/ResourcePacks", PackType::Resources);
+    this->addCustomResourcePackPath(
+        legacy_particleapi::LegacyParticleAPI::getInstance().getSelf().getModDir() / "ResourcePacks",
+        PackType::Resources
+    );
     origin();
 }
 

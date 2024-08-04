@@ -1,15 +1,19 @@
 # LegacyParticleAPI
 
-**You shou install [LiteLoaderBDS-CUI](https://github.com/OEOTYAN/LiteLoaderBDS-CUI/releases) on your server firstly if you want to see the particle.**
+English | [简体中文](README.zh.md)
+
+**You shou install [LiteLoaderBDS-CUI](https://github.com/OEOTYAN/LiteLoaderBDS-CUI/releases) on your server firstly if you want to see the particle**  
+You can just decompress the resource pack to `./plugins/LegacyParticleAPI/ResourcePacks`
 
 ## Usage
 
 ParticleAPI provides a rich and easy-to-use particle generation interface for plugin development, which intuitive design and efficient and stable performance support developers to write better plugins.
 
-Including headfile `#include "LegacyParticleAPI/ParticleAPI.h"` is the first step to use ParticleAPI。
+Including header `#include "LegacyParticleAPI/ParticleAPI.h"` is the first step to use ParticleAPI。
 It provides the generation class `ParticleAPI` which is closer to the bottom layer and the further encapsulated CUI class `ParticleCUI`. The difference between the two is very small, and only the members of the CUI class are introduced here.
 
 ### CUI
+
 | Type | Name                | Illustration              |
 | ---- | ------------------- | ------------------------- |
 | Var  | displayRadius: uint | maximum visible distance  |

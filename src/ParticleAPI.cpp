@@ -3,11 +3,13 @@
 //
 #include "ParticleAPI.h"
 #include "ll/api/service/Bedrock.h"
+#include "mc/deps/core/mce/Color.h"
 #include "mc/network/packet/SpawnParticleEffectPacket.h"
 #include "mc/world/actor/player/Player.h"
 #include "mc/world/level/Level.h"
 #include "mc/world/level/dimension/Dimension.h"
 #include "mc/world/phys/AABB.h"
+
 
 namespace {
 template <typename T>

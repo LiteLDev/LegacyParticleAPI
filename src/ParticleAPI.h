@@ -7,7 +7,6 @@
  *
  */
 #pragma once
-#include "mc/deps/core/mce/Color.h"
 #include "mc/math/Vec3.h"
 #include "mc/world/level/BlockPos.h"
 #include "mc/world/level/levelgen/structure/BoundingBox.h"
