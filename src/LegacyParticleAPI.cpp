@@ -20,9 +20,10 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 
 namespace legacy_particleapi {
 
-static std::unique_ptr<LegacyParticleAPI> instance;
-
-LegacyParticleAPI& LegacyParticleAPI::getInstance() { return *instance; }
+LegacyParticleAPI& LegacyParticleAPI::getInstance() {
+    static LegacyParticleAPI instance;
+    return instance;
+}
 
 bool LegacyParticleAPI::load() {
     ResourceInitHook::hook();
@@ -35,4 +36,4 @@ bool LegacyParticleAPI::disable() { return true; }
 
 } // namespace legacy_particleapi
 
-LL_REGISTER_MOD(legacy_particleapi::LegacyParticleAPI, legacy_particleapi::instance);
+LL_REGISTER_MOD(legacy_particleapi::LegacyParticleAPI, legacy_particleapi::LegacyParticleAPI::getInstance());

@@ -9,7 +9,7 @@ class LegacyParticleAPI {
 public:
     static LegacyParticleAPI& getInstance();
 
-    LegacyParticleAPI(ll::mod::NativeMod& self) : mSelf(self) {}
+    LegacyParticleAPI() : mSelf(*ll::mod::NativeMod::current()) {}
 
     [[nodiscard]] ll::mod::NativeMod& getSelf() const { return mSelf; }
 
@@ -18,8 +18,6 @@ public:
     bool enable();
 
     bool disable();
-
-    // bool unload();
 
 private:
     ll::mod::NativeMod& mSelf;
