@@ -1,6 +1,6 @@
 {
-    "name": "${pluginName}",
-    "entry": "${pluginFile}",
+    "name": "${modName}",
+    "entry": "${modFile}",
     "type": "native",
     "description": "ParticleAPI ported from LiteLoaderBDS",
     "author": "LiteLDev",
