@@ -8,8 +8,9 @@
         "author": "LiteLDev",
         "tags": [
             "levilamina",
-            "plugin",
-            "library"
+            "mod",
+            "library",
+            "lse"
         ]
     },
     "asset_url": "https://github.com/LiteLDev/LegacyParticleAPI/releases/download/v0.9.0-rc.3/LegacyParticleAPI-windows-x64.zip",
