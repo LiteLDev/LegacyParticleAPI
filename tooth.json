@@ -1,21 +1,21 @@
 {
     "format_version": 2,
     "tooth": "github.com/LiteLDev/LegacyParticleAPI",
-    "version": "0.9.0-rc.4",
+    "version": "0.9.0",
     "info": {
         "name": "LegacyParticleAPI",
         "description": "ParticleAPI ported from LiteLoaderBDS",
         "author": "LiteLDev",
         "tags": [
-            "levilamina",
-            "mod",
+            "platform:levilamina",
+            "type:mod",
             "library",
             "lse"
         ]
     },
-    "asset_url": "https://github.com/LiteLDev/LegacyParticleAPI/releases/download/v0.9.0-rc.4/LegacyParticleAPI-windows-x64.zip",
+    "asset_url": "https://github.com/LiteLDev/LegacyParticleAPI/releases/download/v0.9.0/LegacyParticleAPI-windows-x64.zip",
     "prerequisites": {
-        "github.com/LiteLDev/LeviLamina": "1.0.0-rc.3"
+        "github.com/LiteLDev/LeviLamina": "1.0.x"
     },
     "files": {
         "place": [
