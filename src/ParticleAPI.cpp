@@ -5,11 +5,11 @@
 #include "ll/api/service/Bedrock.h"
 #include "mc/deps/core/math/Color.h"
 #include "mc/network/packet/SpawnParticleEffectPacket.h"
+#include "mc/util/MolangVariableMap.h"
 #include "mc/world/actor/player/Player.h"
 #include "mc/world/level/Level.h"
 #include "mc/world/level/dimension/Dimension.h"
 #include "mc/world/phys/AABB.h"
-#include "mc/util/MolangVariableMap.h"
 
 namespace {
 template <typename T>
@@ -55,7 +55,7 @@ std::vector<std::pair<double, int>> binSplit(double start, double end) {
 
 
 static std::unordered_map<ParticleCUI::ColorPalette, std::pair<char, mce::Color>> const particleColors = {
-  // clang-format off
+    // clang-format off
         {ParticleCUI::ColorPalette::BLACK,    {'B', mce::Color("#000000")}},
         {ParticleCUI::ColorPalette::INDIGO,   {'I', mce::Color("#144A74")}},
         {ParticleCUI::ColorPalette::LAVENDER, {'L', mce::Color("#8E65F3")}},
@@ -72,7 +72,7 @@ static std::unordered_map<ParticleCUI::ColorPalette, std::pair<char, mce::Color>
         {ParticleCUI::ColorPalette::SLATE,    {'S', mce::Color("#83769C")}},
         {ParticleCUI::ColorPalette::PINK,     {'P', mce::Color("#FF77A8")}},
         {ParticleCUI::ColorPalette::FAWN,     {'E', mce::Color("#FFCCAA")}},
-  // clang-format on
+    // clang-format on
 };
 
 static char getParticleColorType(ParticleCUI::ColorPalette const& p) { return particleColors.at(p).first; }
@@ -80,8 +80,9 @@ static char getParticleColorType(ParticleCUI::ColorPalette const& p) { return pa
 extern "C" {
 void PTAPI_spawnParticle(int displayRadius, Vec3 const& pos, std::string const& particleName, int dimId) {
     ll::service::getLevel()->forEachPlayer([&](Player& player) {
-        if (player.getDimensionId() == dimId && displayRadius == UINT_MAX || player.getPosition().distanceTo(pos) < displayRadius) {
-            SpawnParticleEffectPacket pkt(pos, particleName, dimId, player.getMolangVariables());
+        if (player.getDimensionId() == dimId && displayRadius == UINT_MAX
+            || player.getPosition().distanceTo(pos) < displayRadius) {
+            SpawnParticleEffectPacket pkt(pos, particleName, dimId, std::move(player.mMolangVariables.get()));
             player.sendNetworkPacket(pkt);
         }
         return true;
