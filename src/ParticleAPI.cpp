@@ -5,6 +5,7 @@
 #include "ll/api/service/Bedrock.h"
 #include "mc/deps/core/math/Color.h"
 #include "mc/network/packet/SpawnParticleEffectPacket.h"
+#include "mc/util/MolangVariable.h"
 #include "mc/util/MolangVariableMap.h"
 #include "mc/world/actor/player/Player.h"
 #include "mc/world/level/Level.h"
@@ -80,7 +81,7 @@ static char getParticleColorType(ParticleCUI::ColorPalette const& p) { return pa
 extern "C" {
 void PTAPI_spawnParticle(int displayRadius, Vec3 const& pos, std::string const& particleName, int dimId) {
     ll::service::getLevel()->forEachPlayer([&](Player& player) {
-        if (player.getDimensionId() == dimId && displayRadius == UINT_MAX
+        if (player.getDimension().mId->id == dimId && displayRadius == UINT_MAX
             || player.getPosition().distanceTo(pos) < displayRadius) {
             SpawnParticleEffectPacket pkt(pos, particleName, dimId, std::move(player.mMolangVariables.get()));
             player.sendNetworkPacket(pkt);
